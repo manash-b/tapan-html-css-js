@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <option value="product-3">Product - 3</option>
     <option value="product-4">Product - 4</option>
   </select>
-  <input type="text" class="flex-1" name="" placeholder="Search by category... value="">
+  <input style="color:"#fff !important"; type="text" class="flex-1" name="" placeholder="Search by category" value="Search by category...">
 </div>
 
     
