@@ -1,0 +1,152 @@
+/* Define color variables */
+:root {
+    --primary-color: #007bff; /* Blue color */
+    --progress-bar-color: #e3f2fd; /* Light blue color */
+    --background-color: #f8f9fa; /* Light background color */
+    --border-color: #dee2e6; /* Border color */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: relative;
+}
+
+#addItemBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.wizard {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 40%; /* Desktop width */
+    height: 100%;
+    background: #fff;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    z-index: 1000;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(100%);
+}
+
+.wizard.show {
+    display: block;
+    animation: slideInBounce 0.5s ease-in-out;
+    transform: translateX(0%);
+    width: 40%;
+}
+@keyframes slideInBounce {
+    0% {
+        transform: translateX(100%);
+        width: 40%;
+        filter: blur(0.5px);
+    }
+    50% {
+        transform: translateX(0%);
+        width: 41%;
+        filter: blur(1px);
+    }
+    100% {
+        transform: translateX(0%);
+        width: 40%;
+        filter: blur(0);
+    }
+}
+
+
+.wizard-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.wizard-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.btn-close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.progress {
+    height: 5px;
+    background-color: var(--background-color);
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    background-color: var(--progress-bar-color);
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+}
+
+.wizard-content {
+    margin-top: 20px;
+}
+
+.wizard-content .form-group {
+    margin-bottom: 15px;
+}
+
+.wizard-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.wizard-content input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.wizard-footer {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.wizard-footer .btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.wizard-footer .btn:hover {
+    background-color: #0056b3; /* Darker blue for hover */
+}
+
+@media (max-width: 768px) {
+    .wizard {
+        width: 80%; /* Mobile width */
+    }
+}

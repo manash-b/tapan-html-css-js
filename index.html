@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Entry Wizard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <button id="addItemBtn" class="btn btn-primary">Add Product</button>
+    </div>
+
+    <div id="wizard" class="wizard">
+        <div class="wizard-header">
+            <div class="d-flex  justify-content-between align-items-center" >
+
+                <h3>Add New Product</h3>
+                <button id="closeWizard" class=" rounded-circle bg-secondary text-white btn ">X</button>
+            </div>
+            <div id="progressBar" class="progress mt-2">
+                <div id="progressBarFill" class="progress-bar" role="progressbar" style="width: 0%;"></div>
+            </div>
+        </div>
+        <div id="wizardContent" class="wizard-content">
+            <!-- Steps will be dynamically loaded here -->
+        </div>
+        <div class="wizard-footer">
+            <button id="prevBtn" class="btn btn-secondary">Previous</button>
+            <button id="nextBtn" class="btn btn-primary">Next</button>
+        </div>
+    </div>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>
