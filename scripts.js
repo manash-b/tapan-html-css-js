@@ -16,19 +16,166 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close the wizard
     closeWizard.addEventListener('click', () => {
         wizard.classList.remove('show');
+        wizard.classList.add('closeAnimation');
     });
 
     // Load step content
     function loadStep(step) {
         const stepsContent = [
-            '<div><h4>Step 1: Basic Information</h4><input type="text" id="productName" placeholder="Product Name"><input type="text" id="productDescription" placeholder="Product Description"><input type="text" id="category" placeholder="Category"><input type="text" id="brand" placeholder="Brand"></div>',
-            '<div><h4>Step 2: Product Specifications</h4><input type="text" id="model" placeholder="Model Number/Name"><input type="text" id="color" placeholder="Color"><input type="text" id="size" placeholder="Size/Dimensions"><input type="text" id="weight" placeholder="Weight"><input type="text" id="material" placeholder="Material"></div>',
-            '<div><h4>Step 3: Pricing and Inventory</h4><input type="text" id="sellingPrice" placeholder="Selling Price"><input type="text" id="mrp" placeholder="MRP"><input type="text" id="discounts" placeholder="Discounts"><input type="text" id="stockQuantity" placeholder="Stock Quantity"><input type="text" id="sku" placeholder="SKU"></div>',
-            '<div><h4>Step 4: Shipping Information</h4><input type="text" id="shippingWeight" placeholder="Weight for Shipping"><input type="text" id="shippingDimensions" placeholder="Dimensions for Shipping"><input type="text" id="deliveryOptions" placeholder="Delivery Options"></div>'
+            // Step 1: Basic Information
+            `<div class="product-form"> 
+
+    
+
+    <h4>Basic Information</h4>
+
+    <label for="product-name">Product Name</label>
+    <input type="text" id="product-name " class="form-control" placeholder="Product Name">
+
+    <label for="product-description">Product Description</label>
+    <textarea id="product-description" placeholder="Product Description"></textarea>
+    <div class="d-flex align-items-center">
+
+    <label style="background:#E5E4E4;border:"2px solid #E5E4E4;padding:"0 10px" class="flex   pt-2 pb-2 mt-1 px-4 border border-3" for="product-category bg-secondary">Category</label>
+    <select id="product-category" class="flex-1 " style="border-left:0" >
+      <option value="">Search by category...</option>
+      <option value="product-1">Product - 1</option>
+      <option value="product-2">Product - 2</option>
+      <option value="product-3">Product - 3</option>
+      <option value="product-4">Product - 4</option>
+    </select> 
+    
+    
+    </div>
+    
+
+
+    
+    <select id="product-brand">
+      <option value="">Brand</option>
+      <option value="product-1">Brand- 1</option>
+      <option value="product-2">Brand- 2</option>
+      <option value="product-3">Brand- 3</option>
+      <option value="product-4">Brand- 4</option>
+      </select>
+
+   
+  </>`,
+
+            // Step 2: Product Specifications
+            `<div style="color: #4E4E4E;" class="d-flex flex-column gap-3">
+                <h4> Product Specifications</h4>
+                <div>
+                    <label>Model Number/Name</label>
+                    <input class="form-control" type="text" id="model" placeholder="Model Number/Name">
+                </div>
+                <div>
+    <select class="form-control" id="color">
+        <option value="">Color</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        </select>
+</div> 
+
+
+<div>
+    <select class="form-control" id="size">
+        <option value="">Size/Dimensions</option>
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+        </select>
+</div>
+
+<div> 
+
+    <select class="form-control" id="weight">
+        <option value="">Weight</option>
+        <option value="light">Light</option>
+        <option value="medium">Medium</option>
+        <option value="heavy">Heavy</option>
+        </select>
+</div>
+
+<div> 
+
+    <select class="form-control" id="material">
+        <option value="">Material</option>
+        <option value="cotton">Cotton</option>
+        <option value="wool">Wool</option>
+        <option value="silk">Silk</option>
+        </select>
+</div>
+            </div>`,
+
+            // Step 3: Pricing and Inventory
+            ` <div class="pricing-inventory">
+        <h4>Pricing and Inventory</h4>
+        <div class="row g-3">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="mrp" class="form-label">MRP</label>
+      <input type="text" class="form-control" id="mrp" value="$250">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="sellingPrice" class="form-label">Selling Price</label>
+      <input type="text" class="form-control" id="sellingPrice" value="$200">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="discounts" class="form-label">Discounts</label>
+      <input type="text" class="form-control" id="discounts" value="$50">
+    </div>
+  </div>
+</div>
+
+
+          <div class="d-flex flex-column ">
+  <div>
+    <div class="d-flex flex-column gap-0">
+      <label for="stockQuantity">Stock Quantity</label>
+      <input type="text" class="w-auto" id="stockQuantity" value="6">
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <div class="d-flex flex-column gap-0">
+      <label for="sku">SKU</label>
+      <input type="text" class="w-auto" id="sku" value="H8R7029P">
+    </div>
+  </div>
+</div>
+
+
+
+    </div>`,
+
+            // Step 4: Shipping Information
+            `<div style="color:#4E4E4E" class="d-flex flex-column gap-3">
+                <h4> Shipping Information</h4>
+                <div>
+                    <label>Weight for Shipping</label>
+                    <input class="form-control " type="text" id="shippingWeight" placeholder="Weight for Shipping">
+                </div>
+                <div>
+                    <label>Dimensions for Shipping</label>
+                    <input class="form-control " type="text" id="shippingDimensions" placeholder="Dimensions for Shipping">
+                </div>
+                <div>
+                    <label>Delivery Options</label>
+                    <input class="form-control " type="text" id="deliveryOptions" placeholder="Delivery Options">
+                </div>
+            </div>`
         ];
+
         document.getElementById('wizardContent').innerHTML = stepsContent[step];
         updateProgressBar(step);
     }
+
 
     // Update progress bar
     function updateProgressBar(step) {
