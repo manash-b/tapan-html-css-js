@@ -1,29 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const addItemBtn = document.getElementById('addItemBtn');
-    const wizard = document.getElementById('wizard');
-    const closeWizard = document.getElementById('closeWizard');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const progressBarFill = document.getElementById('progressBarFill');
-    let currentStep = 0;
 
-    // Show the wizard
-    addItemBtn.addEventListener('click', () => {
-        wizard.classList.add('show');
-        loadStep(currentStep);
-    });
+  const addItemBtn = document.getElementById('addItemBtn');
+  const wizard = document.getElementById('wizard');
+  const closeWizard = document.getElementById('closeWizard');
+  const saveContiue = document.getElementById('saveContiue');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const progressBarFill = document.getElementById('progressBarFill');
+  let currentStep = 0;
 
-    // Close the wizard
-    closeWizard.addEventListener('click', () => {
-        wizard.classList.remove('show');
-        wizard.classList.add('closeAnimation');
-    });
+  // Show the wizard
+  addItemBtn.addEventListener('click', () => {
+    wizard.classList.add('show');
+    loadStep(currentStep);
+    saveContiue.style.display='flex'
+  });
 
-    // Load step content
-    function loadStep(step) {
-        const stepsContent = [
-            // Step 1: Basic Information
-            `<div class="product-form"> 
+  // Close the wizard
+  closeWizard.addEventListener('click', () => {
+    wizard.classList.remove('show');
+    wizard.classList.add('closeAnimation');
+    saveContiue.style.display='none'
+  });
+
+  // Load step content
+  function loadStep(step) {
+    const stepsContent = [
+      // Step 1: Basic Information
+      `<div class="product-form"> 
 
     
 
@@ -35,18 +39,17 @@ document.addEventListener('DOMContentLoaded', () => {
     <label for="product-description">Product Description</label>
     <textarea id="product-description" placeholder="Product Description"></textarea>
     <div class="d-flex align-items-center">
+  <select id="product-category" class="py-2" style="background: #E5E4E4; border: 2px solid #E5E4E4; padding: 0 10px; width: 140px;">
+    <option value="product-1">Category</option>
+   
+    <option value="product-1">Product - 1</option>
+    <option value="product-2">Product - 2</option>
+    <option value="product-3">Product - 3</option>
+    <option value="product-4">Product - 4</option>
+  </select>
+  <input type="text" class="flex-1" name="" placeholder="Search by category... value="">
+</div>
 
-    <label style="background:#E5E4E4;border:"2px solid #E5E4E4;padding:"0 10px" class="flex   pt-2 pb-2 mt-1 px-4 border border-3" for="product-category bg-secondary">Category</label>
-    <select id="product-category" class="flex-1 " style="border-left:0" >
-      <option value="">Search by category...</option>
-      <option value="product-1">Product - 1</option>
-      <option value="product-2">Product - 2</option>
-      <option value="product-3">Product - 3</option>
-      <option value="product-4">Product - 4</option>
-    </select> 
-    
-    
-    </div>
     
 
 
@@ -62,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
    
   </>`,
 
-            // Step 2: Product Specifications
-            `<div style="color: #4E4E4E;" class="d-flex flex-column gap-3">
+      // Step 2: Product Specifications
+      `<div style="color: #4E4E4E;" class="d-flex flex-column gap-3">
                 <h4> Product Specifications</h4>
                 <div>
                     <label>Model Number/Name</label>
@@ -109,8 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
             </div>`,
 
-            // Step 3: Pricing and Inventory
-            ` <div class="pricing-inventory">
+      // Step 3: Pricing and Inventory
+      ` <div class="pricing-inventory">
         <h4>Pricing and Inventory</h4>
         <div class="row g-3">
   <div class="col-md-4">
@@ -134,95 +137,80 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 
-          <div class="d-flex flex-column ">
+  <div class="d-flex flex-column">
   <div>
     <div class="d-flex flex-column gap-0">
       <label for="stockQuantity">Stock Quantity</label>
-      <input type="text" class="w-auto" id="stockQuantity" value="6">
+      <input style="width: 50px; text-align: center;" type="text" id="stockQuantity" value="6">
     </div>
   </div>
 
   <div class="mt-3">
     <div class="d-flex flex-column gap-0">
       <label for="sku">SKU</label>
-      <input type="text" class="w-auto" id="sku" value="H8R7029P">
+      <input style="width: 140px !important;text-align: center;" type="text" value="H8R7029P">
     </div>
   </div>
 </div>
 
+</div>
 
 
-    </div>`,
 
-            // Step 4: Shipping Information
-            `<div style="color:#4E4E4E" class="d-flex flex-column gap-3">
-                <h4> Shipping Information</h4>
-                <div>
-                    <label>Weight for Shipping</label>
-                    <input class="form-control " type="text" id="shippingWeight" placeholder="Weight for Shipping">
-                </div>
-                <div>
-                    <label>Dimensions for Shipping</label>
-                    <input class="form-control " type="text" id="shippingDimensions" placeholder="Dimensions for Shipping">
-                </div>
-                <div>
-                    <label>Delivery Options</label>
-                    <input class="form-control " type="text" id="deliveryOptions" placeholder="Delivery Options">
-                </div>
-            </div>`
-        ];
+    </div>`
+    ];
 
-        document.getElementById('wizardContent').innerHTML = stepsContent[step];
-        updateProgressBar(step);
+    document.getElementById('wizardContent').innerHTML = stepsContent[step];
+    updateProgressBar(step);
+  }
+
+
+  // Update progress bar
+  function updateProgressBar(step) {
+    const percentage = ((step + 1) / 3) * 100; // 4 steps total
+    progressBarFill.style.width = `${percentage}%`;
+  }
+
+  // Navigation buttons
+  prevBtn.addEventListener('click', () => {
+    if (currentStep > 0) {
+      currentStep--;
+      loadStep(currentStep);
     }
+  });
 
-
-    // Update progress bar
-    function updateProgressBar(step) {
-        const percentage = ((step + 1) / 4) * 100; // 4 steps total
-        progressBarFill.style.width = `${percentage}%`;
+  nextBtn.addEventListener('click', () => {
+    if (currentStep < 2) { // 4 steps total
+      currentStep++;
+      loadStep(currentStep);
+    } else {
+      // Final step action (e.g., log all values)
+      logValues();
+      wizard.classList.remove('show');
     }
+  });
 
-    // Navigation buttons
-    prevBtn.addEventListener('click', () => {
-        if (currentStep > 0) {
-            currentStep--;
-            loadStep(currentStep);
-        }
-    });
-
-    nextBtn.addEventListener('click', () => {
-        if (currentStep < 3) { // 4 steps total
-            currentStep++;
-            loadStep(currentStep);
-        } else {
-            // Final step action (e.g., log all values)
-            logValues();
-            wizard.classList.remove('show');
-        }
-    });
-
-    // Log all values
-    function logValues() {
-        const values = {
-            productName: document.getElementById('productName').value,
-            productDescription: document.getElementById('productDescription').value,
-            category: document.getElementById('category').value,
-            brand: document.getElementById('brand').value,
-            model: document.getElementById('model').value,
-            color: document.getElementById('color').value,
-            size: document.getElementById('size').value,
-            weight: document.getElementById('weight').value,
-            material: document.getElementById('material').value,
-            sellingPrice: document.getElementById('sellingPrice').value,
-            mrp: document.getElementById('mrp').value,
-            discounts: document.getElementById('discounts').value,
-            stockQuantity: document.getElementById('stockQuantity').value,
-            sku: document.getElementById('sku').value,
-            shippingWeight: document.getElementById('shippingWeight').value,
-            shippingDimensions: document.getElementById('shippingDimensions').value,
-            deliveryOptions: document.getElementById('deliveryOptions').value
-        };
-        console.log('Submitted Values:', values);
-    }
+  // Log all values
+  function logValues() {
+    const values = {
+      productName: document.getElementById('productName').value,
+      productDescription: document.getElementById('productDescription').value,
+      category: document.getElementById('category').value,
+      brand: document.getElementById('brand').value,
+      model: document.getElementById('model').value,
+      color: document.getElementById('color').value,
+      size: document.getElementById('size').value,
+      weight: document.getElementById('weight').value,
+      material: document.getElementById('material').value,
+      sellingPrice: document.getElementById('sellingPrice').value,
+      mrp: document.getElementById('mrp').value,
+      discounts: document.getElementById('discounts').value,
+      stockQuantity: document.getElementById('stockQuantity').value,
+      sku: document.getElementById('sku').value,
+      shippingWeight: document.getElementById('shippingWeight').value,
+      shippingDimensions: document.getElementById('shippingDimensions').value,
+      deliveryOptions: document.getElementById('deliveryOptions').value
+    };
+    console.log('Submitted Values:', values);
+  }
 });
