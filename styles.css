@@ -1,6 +1,6 @@
 :root {
     --primary-color: #1F66EF; /* Blue color */
-    --progress-bar-color: #e3f2fd; /* Light blue color */
+    --progress-bar-color: #367DFB; /* Light blue color */
     --background-color: #f8f9fa; /* Light background color */
     --border-color: #dee2e6; /* Border color */
 }
@@ -73,7 +73,7 @@ body {
 
 .progress {
     height: 5px;
-    background-color: var(--background-color);
+    background-color:#E4E4E4;
     border-radius: 5px;
     margin-top: 10px;
 }

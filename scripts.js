@@ -13,14 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
   addItemBtn.addEventListener('click', () => {
     wizard.classList.add('show');
     loadStep(currentStep);
-    saveContiue.style.display='flex'
+    saveContiue.style.display = 'flex'
   });
 
   // Close the wizard
   closeWizard.addEventListener('click', () => {
     wizard.classList.remove('show');
     wizard.classList.add('closeAnimation');
-    saveContiue.style.display='none'
+    saveContiue.style.display = 'none'
   });
 
   // Load step content
